@@ -34,11 +34,11 @@ Para cada vaga são armazenados:
 
 ```text
 .
-├── main.py
+├── app.py
 ├── README.md
 ├── requirements.txt
 ├── .env.example
-└── lista_vagas.json
+├── .gitignore
 ```
 
 ## Instalação
