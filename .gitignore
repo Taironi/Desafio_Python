@@ -1,0 +1,5 @@
+*
+.env
+**pycache**/
+*.pyc
+lista_vagas.json
