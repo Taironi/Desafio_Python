@@ -1,12 +1,22 @@
 # Scraper de Vagas com Python
 
-## Descrição
+## Sobre o Projeto
 
-Projeto desenvolvido para coletar vagas de emprego utilizando a API pública da Adzuna.
+Este projeto foi desenvolvido para coletar vagas de emprego utilizando a API pública da Adzuna.
 
-O programa consulta múltiplas páginas de resultados, extrai informações relevantes das vagas e exporta os dados para um arquivo JSON.
+O script realiza a consulta de múltiplas páginas de resultados, extrai informações relevantes das vagas e exporta os dados para um arquivo JSON.
 
-Os dados coletados incluem:
+## Funcionalidades
+
+* Coleta vagas reais através da API da Adzuna.
+* Consulta múltiplas páginas de resultados.
+* Exporta os dados para um arquivo JSON.
+* Não utiliza Selenium.
+* Utiliza variáveis de ambiente para proteger credenciais da API.
+
+## Dados Coletados
+
+Para cada vaga são armazenados:
 
 * Link da vaga
 * Título da vaga
@@ -17,37 +27,66 @@ Os dados coletados incluem:
 
 * Python 3
 * Requests
+* Python Dotenv
 * JSON
+
+## Estrutura do Projeto
+
+```text
+.
+├── main.py
+├── README.md
+├── requirements.txt
+├── .env.example
+└── lista_vagas.json
+```
 
 ## Instalação
 
 Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/scraper-vagas.git
+git clone https://github.com/SEU_USUARIO/scraper-vagas.git
 cd scraper-vagas
 ```
 
 Instale as dependências:
 
 ```bash
-pip install requests
+pip install -r requirements.txt
+```
+
+Ou:
+
+```bash
+pip install requests python-dotenv
 ```
 
 ## Configuração
 
-No arquivo principal, configure suas credenciais da API Adzuna:
+Crie um arquivo `.env` na raiz do projeto:
 
-```python
-app_id = "SEU_APP_ID"
-app_key = "SEU_APP_KEY"
+```env
+ADZUNA_APP_ID=seu_app_id
+ADZUNA_APP_KEY=sua_app_key
 ```
 
-Caso ainda não possua credenciais, crie uma conta na Adzuna e obtenha sua chave de acesso.
+Para obter as credenciais:
+
+1. Crie uma conta na plataforma Adzuna.
+2. Gere seu APP ID e APP KEY.
+3. Adicione os valores ao arquivo `.env`.
+
+### Exemplo de arquivo `.env.example`
+
+```env
+ADZUNA_APP_ID=
+ADZUNA_APP_KEY=
+```
 
 ## Execução
 
-Execute o programa:
+Execute o script:
 
 ```bash
 python main.py
@@ -55,7 +94,7 @@ python main.py
 
 ## Saída
 
-Após a execução será gerado o arquivo:
+Ao executar o programa será gerado o arquivo:
 
 ```text
 lista_vagas.json
@@ -66,7 +105,7 @@ Exemplo de saída:
 ```json
 [
   {
-    "link": "https://...",
+    "link": "https://exemplo.com/vaga",
     "titulo": "Desenvolvedor Python",
     "empresa": "Empresa Exemplo",
     "localizacao": "São Paulo"
@@ -74,27 +113,31 @@ Exemplo de saída:
 ]
 ```
 
-## Funcionalidades
+## Como Funciona
 
-* Consulta vagas reais através da API Adzuna.
-* Coleta vagas de múltiplas páginas.
-* Exporta os resultados para JSON.
-* Não utiliza Selenium.
-* Pode ser executado em background ou agendado via cron/Task Scheduler.
+O programa:
 
-## Estrutura do Projeto
+1. Carrega as credenciais da API através do arquivo `.env`.
+2. Consulta as páginas 1 a 4 da API da Adzuna.
+3. Extrai os dados das vagas encontradas.
+4. Armazena os resultados em uma lista.
+5. Exporta os dados para o arquivo `lista_vagas.json`.
+
+## Dependências
+
+Arquivo `requirements.txt`:
 
 ```text
-.
-├── main.py
-├── lista_vagas.json
-└── README.md
+requests
+python-dotenv
 ```
 
 ## Observações
 
-Os links retornados são fornecidos pela API da Adzuna e apontam para as respectivas vagas divulgadas pelos recrutadores e plataformas de recrutamento.
+* O arquivo `.env` não deve ser enviado ao GitHub.
+* Recomenda-se adicionar `.env` ao `.gitignore`.
+* O arquivo JSON é criado apenas se não existir previamente.
 
 ## Autor
 
-Projeto desenvolvido como solução para o desafio "Scraper de Vagas".
+Projeto desenvolvido como solução para o desafio de coleta de vagas utilizando Python e API pública.
